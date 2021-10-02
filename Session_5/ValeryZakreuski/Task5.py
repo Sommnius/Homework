@@ -2,7 +2,6 @@
 # of function it decorates and prints it before next call.
 
 
-
 def remember_result(func):
     last_result = None
 
@@ -11,13 +10,15 @@ def remember_result(func):
         print(f"Last result:'{last_result}'")
         last_result = func(*args, **kwargs)
         # return last_result
+
     return wrapper
 
 
 @remember_result
 def sum_list(*args):
     for elem in args:
-        if str(elem).isdigit(): result = 0
+        if isinstance(elem, int):
+            result = 0
         else:
             result = ""
             break
@@ -30,4 +31,3 @@ def sum_list(*args):
 sum_list("a", "b")
 sum_list("abc", "cde")
 sum_list(3, 4, 5)
-
